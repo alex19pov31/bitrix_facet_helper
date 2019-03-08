@@ -1,0 +1,34 @@
+{
+    "name": "alex19pov31/bitrix_facet_helper",
+    "description": "Helper for bitrix facet index",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "bitrix",
+        "facet"
+    ],
+    "autoload": {
+        "psr-4": {
+          "Alex19pov31\\BitrixFacetHelper\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nesterov Alexander",
+            "email": "alex19pov31@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/support": "^5.8"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.2",
+        "phpunit/phpunit": "^8"
+    },
+  "autoload-dev": {
+    "psr-4": {
+      "Alex19pov31\\Tests\\BitrixFacetHelper\\": "tests/"
+    }
+  }
+}

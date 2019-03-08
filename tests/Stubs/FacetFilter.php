@@ -1,0 +1,501 @@
+<?php
+
+namespace Alex19pov31\Tests\BitrixFacetHelper\Stubs;
+
+use Alex19pov31\BitrixFacetHelper\FacetFilter as FacetFilterOrigin;
+
+class FacetFilter extends FacetFilterOrigin
+{
+    use FacetTrait;
+
+    private $facet;
+
+    /**
+     * Фасетный индекс
+     *
+     * @return Bitrix\Facet
+     */
+    public function getFacet()
+    {
+        if (!is_null($this->facet)) {
+            return $this->facet;
+        }
+
+        return $this->facet = new Bitrix\Facet;
+    }
+
+    public static function fillData(): void
+    {
+        Bitrix\DB\Result::setData(
+            'filtered_facet',
+            [
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '1',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '2',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '3',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '4',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '5',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '20',
+                    'VALUE' => '6',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '22',
+                    'VALUE' => '7',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '8',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '9',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '16',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '17',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '11',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '12',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '13',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '14',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '15',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '3',
+                    'VALUE' => '12',
+                    'MIN_VALUE_NUM' => '1899',
+                    'MAX_VALUE_NUM' => '2199',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+            ]
+        );
+
+        Bitrix\DB\Result::setData(
+            'unfiltered_facet',
+            [
+                [
+                    'FACET_ID' => '3',
+                    'VALUE' => '12',
+                    'MIN_VALUE_NUM' => '1899',
+                    'MAX_VALUE_NUM' => '2199',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '1',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '2',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '3',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '4',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '10',
+                    'VALUE' => '5',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '20',
+                    'VALUE' => '6',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '22',
+                    'VALUE' => '7',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '2',
+                ],
+                [
+                    'FACET_ID' => '22',
+                    'VALUE' => '13',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '8',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '2',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '9',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '2',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '10',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '11',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '14',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '15',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '16',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '60',
+                    'VALUE' => '17',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '1',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '11',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '12',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '13',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '14',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+                [
+                    'FACET_ID' => '64',
+                    'VALUE' => '15',
+                    'MIN_VALUE_NUM' => '0',
+                    'MAX_VALUE_NUM' => '0',
+                    'VALUE_FRAC_LEN' => '0',
+                    'ELEMENT_COUNT' => '3',
+                ],
+            ]
+        );
+
+        Bitrix\DB\Result::setData(
+            'property_query',
+            [
+                [
+                    'ID' => '5',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'BRAND_REF',
+                    'NAME' => 'Бренд',
+                    'PROPERTY_TYPE' => 'S',
+                    'DEFAULT_VALUE' => '',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'Y',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => 'directory',
+                    'USER_TYPE_SETTINGS' => 'a:5:{s:4:"size";i:1;s:5:"width";i:0;s:5:"group";s:1:"N";s:8:"multiple";s:1:"N";s:10:"TABLE_NAME";s:21:"eshop_brand_reference";}',
+                    'HINT' => 'Test Hint',
+                ],
+                [
+                    'ID' => '10',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'MANUFACTURER',
+                    'NAME' => 'Производитель',
+                    'PROPERTY_TYPE' => 'S',
+                    'DEFAULT_VALUE' => '',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'N',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => '',
+                    'USER_TYPE_SETTINGS' => '',
+                    'HINT' => '',
+                ],
+                [
+                    'ID' => '11',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'MATERIAL',
+                    'NAME' => 'Материал',
+                    'PROPERTY_TYPE' => 'S',
+                    'DEFAULT_VALUE' => '',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'Y',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => '',
+                    'USER_TYPE_SETTINGS' => '',
+                    'HINT' => '',
+                ],
+                [
+                    'ID' => '12',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'COLOR',
+                    'NAME' => 'Цвет',
+                    'PROPERTY_TYPE' => 'S',
+                    'DEFAULT_VALUE' => '',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'N',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => '',
+                    'USER_TYPE_SETTINGS' => '',
+                    'HINT' => '',
+                ],
+                [
+                    'ID' => '30',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'COLOR_REF',
+                    'NAME' => 'Цвет',
+                    'PROPERTY_TYPE' => 'S',
+                    'DEFAULT_VALUE' => 'purple',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'N',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => 'directory',
+                    'USER_TYPE_SETTINGS' => 'a:5:{s:4:"size";i:1;s:5:"width";i:0;s:5:"group";s:1:"N";s:8:"multiple";s:1:"N";s:10:"TABLE_NAME";s:21:"eshop_color_reference";}',
+                    'HINT' => '',
+                ],
+                [
+                    'ID' => '31',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'SIZES_SHOES',
+                    'NAME' => 'Размеры обуви',
+                    'PROPERTY_TYPE' => 'L',
+                    'DEFAULT_VALUE' => '',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'N',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => '',
+                    'USER_TYPE_SETTINGS' => '',
+                    'HINT' => '',
+                ],
+                [
+                    'ID' => '32',
+                    'IBLOCK_ID' => '2',
+                    'SECTION_ID' => '0',
+                    'SMART_FILTER' => 'Y',
+                    'CODE' => 'SIZES_CLOTHES',
+                    'NAME' => 'Размеры одежды ',
+                    'PROPERTY_TYPE' => 'L',
+                    'DEFAULT_VALUE' => '',
+                    'ACTIVE' => 'Y',
+                    'MULTIPLE' => 'N',
+                    'IS_REQUIRED' => 'N',
+                    'LIST_TYPE' => 'L',
+                    'USER_TYPE' => '',
+                    'USER_TYPE_SETTINGS' => '',
+                    'HINT' => '',
+                ],
+            ]
+        );
+
+        Bitrix\DB\Result::setData(
+            'group_table',
+            [
+                [
+                    'ID' => '1',
+                    'NAME' => 'BASE',
+                    'BASE' => 'Y',
+                    'SORT' => '100',
+                    'XML_ID' => 'BASE',
+                    'MODIFIED_BY' => '1',
+                    'CREATED_BY' => '1',
+                ],
+            ]
+        );
+
+        Bitrix\Dictionary::setData([
+            'test5' => 1,
+            'test4' => 2,
+            'test3' => 3,
+            'test2' => 4,
+            'test1' => 5,
+        ]);
+    }
+}
