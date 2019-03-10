@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/alex19pov31/bitrix_facet_helper.svg?branch=master)](https://travis-ci.org/alex19pov31/bitrix_facet_helper)
+
 # Bitrix facet helper
 
 Хелпер для работы с фасетными индексами.
