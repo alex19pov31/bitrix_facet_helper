@@ -22,7 +22,7 @@ class Dictionary
         return '';
     }
 
-    public static function setData(array $data): void
+    public static function setData(array $data)
     {
         static::$data = $data;
     }

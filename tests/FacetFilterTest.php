@@ -33,7 +33,7 @@ class FacetFilterTest extends TestCase
         ]);
     }
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         FacetFilter::fillData();
     }

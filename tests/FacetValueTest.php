@@ -126,7 +126,7 @@ class FacetValueTest extends TestCase
         return $this->facetResult = $facetFilter->getList($filter);
     }
 
-    public static function setUpBeforeClass(): void
+    public static function setUpBeforeClass()
     {
         FacetFilter::fillData();
     }

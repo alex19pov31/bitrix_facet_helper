@@ -24,7 +24,7 @@ class FacetFilter extends FacetFilterOrigin
         return $this->facet = new Bitrix\Facet;
     }
 
-    public static function fillData(): void
+    public static function fillData()
     {
         Bitrix\DB\Result::setData(
             'filtered_facet',
