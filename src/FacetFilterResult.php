@@ -77,6 +77,11 @@ class FacetFilterResult extends Collection
         }
     }
 
+    /**
+     * Возвращает выбранные значения
+     *
+     * @return array
+     */
     public function getSelectedValues(): array
     {
         $result = [];
@@ -105,6 +110,11 @@ class FacetFilterResult extends Collection
         return $result;
     }
 
+    /**
+     * Количество элементов при фильтрации
+     *
+     * @return integer
+     */
     public function getElementCount(): int
     {
         $count = 0;

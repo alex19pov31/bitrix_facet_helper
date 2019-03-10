@@ -28,4 +28,10 @@ $facetResult->getProperty('COLOR')->getValues();
 $facetResult->getProperty('COLOR')->getDictValues();
 //$facetResult['COLOR']->getDictValues();
 
+$facetResult->getProperty('PRICE_BASE')->getMinValue();
+$facetResult->getProperty('PRICE_BASE')->getMaxValue();
+$facetResult->getProperty('PRICE_BASE')->getOriginMinValue();
+$facetResult->getProperty('PRICE_BASE')->getOriginMaxValue();
+$facetResult->getProperty('PRICE_BASE')->isValidValues();
+
 ```

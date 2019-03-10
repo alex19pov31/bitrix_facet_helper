@@ -49,6 +49,13 @@ class FacetProperty extends BaseModel
         ]);
     }
 
+    /**
+     * Список свойств для фасетного индекса
+     *
+     * @param integer $iblockId
+     * @param array $filter
+     * @return Collection
+     */
     public static function getList(int $iblockId, array $filter = []): Collection
     {
         $propertyList = [];
@@ -300,13 +307,18 @@ class FacetProperty extends BaseModel
         return $firstValue->getMinValue();
     }
 
+    /**
+     * Проверка значений числового типа и типа цены
+     *
+     * @return boolean
+     */
     public function isValidValues(): bool
     {
         if (!$this->isNumericProperty() && !$this->isPrice()) {
             return true;
         }
 
-        return $this->getOriginMinValue() != $this->getOriginMaxValue();
+        return $this->getOriginMinValue() < $this->getOriginMaxValue();
     }
 
     /**
@@ -328,6 +340,11 @@ class FacetProperty extends BaseModel
         return $firstValue->getMaxValue();
     }
 
+    /**
+     * Начальное минимальное значение
+     *
+     * @return float
+     */
     public function getOriginMinValue(): float
     {
         if (!$this->isNumericProperty() && !$this->isPrice()) {
@@ -337,6 +354,11 @@ class FacetProperty extends BaseModel
         return $this->getFirstValue()->getOriginMinValue() - $this->diffValue;
     }
 
+    /**
+     * Начальное максимальное значение
+     *
+     * @return float
+     */
     public function getOriginMaxValue(): float
     {
         if (!$this->isNumericProperty() && !$this->isPrice()) {
@@ -396,12 +418,24 @@ class FacetProperty extends BaseModel
         }
     }
 
+    /**
+     * Возвращает код свойства
+     *
+     * @param string $prop
+     * @return string
+     */
     public static function getPropertyCode(string $prop): string
     {
         $prop = strtoupper($prop);
         return str_replace(['PROPERTY_', '>', '<', '=', "%", '!'], '', $prop);
     }
 
+    /**
+     * Возвращает оператор
+     *
+     * @param string $prop
+     * @return string
+     */
     public static function getPropertyOperation(string $prop): string
     {
         if (!preg_match('/([\>\<\=\%\!]{1,2})/', $prop, $match)) {
@@ -419,6 +453,12 @@ class FacetProperty extends BaseModel
         return $operator;
     }
 
+    /**
+     * Сортирует значения по указанному полю
+     *
+     * @param string $byField
+     * @return FacetProperty
+     */
     public function sortValues(string $byField = 'DICTIONARY_VALUE'): FacetProperty
     {
         $newValues = [];
@@ -437,6 +477,13 @@ class FacetProperty extends BaseModel
         return $this;
     }
 
+    /**
+     * Сортирует значения в соотвествии с указанными правилами сортировки
+     *
+     * @param array $data
+     * @param string $byField
+     * @return FacetProperty
+     */
     public function sortValuesByData(array $data, string $byField = 'DICTIONARY_VALUE'): FacetProperty
     {
         $dataValues = [];
