@@ -2,10 +2,10 @@
 
 namespace Alex19pov31\Tests\BitrixFacetHelper;
 
-use Alex19pov31\Tests\BitrixFacetHelper\Stubs\FacetFilter;
-use PHPUnit\Framework\TestCase;
 use Alex19pov31\BitrixFacetHelper\FacetFilterResult;
+use Alex19pov31\Tests\BitrixFacetHelper\Stubs\FacetFilter;
 use Alex19pov31\Tests\BitrixFacetHelper\Stubs\FacetProperty;
+use PHPUnit\Framework\TestCase;
 
 class FacetPropertyTest extends TestCase
 {
@@ -81,18 +81,21 @@ class FacetPropertyTest extends TestCase
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->isNumericProperty(), false);
+        $this->assertEquals($facetResult->getProperty('TEST_NUMERIC')->isNumericProperty(), true);
     }
 
     public function testCheckIsDatetimeProperty()
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->isDatetimeProperty(), false);
+        $this->assertEquals($facetResult->getProperty('TEST_DATETIME')->isDatetimeProperty(), true);
     }
 
     public function testCheckIsPriceProperty()
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->isPriceProperty(), false);
+        $this->assertEquals($facetResult->getProperty('PRICE_BASE')->isPriceProperty(), true);
     }
 
     public function testCheckIsDictionaryProperty()
@@ -105,12 +108,14 @@ class FacetPropertyTest extends TestCase
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->getMinValue(), 0);
+        $this->assertEquals($facetResult->getProperty('TEST_NUMERIC')->getMinValue(), 10);
     }
 
     public function testCheckIsValidValues()
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->isValidValues(), true);
+        $this->assertEquals($facetResult->getProperty('TEST_NUMERIC')->isValidValues(), true);
     }
 
     public function testCheckGetValues()
@@ -124,18 +129,21 @@ class FacetPropertyTest extends TestCase
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->getMaxValue(), 0);
+        $this->assertEquals($facetResult->getProperty('TEST_NUMERIC')->getMaxValue(), 1000);
     }
 
     public function testCheckGetOriginMinValue()
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->getOriginMinValue(), 0);
+        $this->assertEquals($facetResult->getProperty('TEST_NUMERIC')->getOriginMinValue(), 1);
     }
 
     public function testCheckGetOriginMaxValue()
     {
         $facetResult = $this->getFacetResult();
         $this->assertEquals($facetResult->getProperty('BRAND_REF')->getOriginMaxValue(), 0);
+        $this->assertEquals($facetResult->getProperty('TEST_NUMERIC')->getOriginMaxValue(), 1200);
     }
 
     public function testCheckGetPropertyCode()
@@ -184,10 +192,10 @@ class FacetPropertyTest extends TestCase
     {
         $facetResult = $this->getFacetResult();
         $property = $facetResult->getProperty('BRAND_REF')->sortValues('DICTIONARY_VALUE');
-        
+
         $index = 1;
-        foreach($property->getValues() as $value) {
-            $this->assertEquals($value->getDictValue(), 'test'.$index++);
+        foreach ($property->getValues() as $value) {
+            $this->assertEquals($value->getDictValue(), 'test' . $index++);
         }
     }
 
@@ -206,19 +214,19 @@ class FacetPropertyTest extends TestCase
         $sortKeys = array_keys($sortData);
         $property = $facetResult->getProperty('BRAND_REF')->sortValuesByData($sortData, 'DICTIONARY_VALUE');
         $index = 0;
-        foreach($property->getValues() as $value) {
+        foreach ($property->getValues() as $value) {
             $this->assertEquals($value->getDictValue(), $sortKeys[$index++]);
         }
     }
 
-    public function testCheckSelectedValue()
+    public function testCheckGetSelectedValue()
     {
         $facetResult = $this->getFacetResult();
         $property = $facetResult->getProperty('BRAND_REF');
 
-        foreach($property->getValues() as $value) {
+        foreach ($property->getSelectedValue() as $value) {
             if ($value->getDictValue() == 'test4') {
-                $this->assertEquals($value->isSelected(), true);
+                $this->assertTrue($value->isSelected());
                 return;
             }
         }
@@ -255,7 +263,13 @@ class FacetPropertyTest extends TestCase
             return $this->facetResult;
         }
 
-        $filter = ['ACTIVE' => 'Y', '>PRICE_BASE' => 2000, 'PROPERTY_BRAND_REF' => 'test4'];
+        $filter = [
+            'ACTIVE' => 'Y',
+            '>PRICE_BASE' => 2000,
+            'PROPERTY_BRAND_REF' => 'test4',
+            '>PROPERTY_TEST_NUMERIC' => 10,
+            '<PROPERTY_TEST_NUMERIC' => 1000,
+        ];
         $facetFilter = new FacetFilter('catalog');
         return $this->facetResult = $facetFilter->getList($filter);
     }

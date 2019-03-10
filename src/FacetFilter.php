@@ -173,7 +173,7 @@ class FacetFilter
         $props = $this->getPoropertyList()->keyBy('FACET_ID');
         foreach ($originValues as $key => &$val) {
             $prop = $props[$val['FACET_ID']];
-            if (!$prop || !$prop->isDictionaryProperty() && !$this->selectedProps[$prop['CODE']]) {
+            if (empty($prop) || !$prop->isDictionaryProperty() && empty($this->selectedProps[$prop['CODE']])) {
                 continue;
             }
 

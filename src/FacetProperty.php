@@ -370,7 +370,7 @@ class FacetProperty extends BaseModel
     {
         foreach ($this->values as $key => &$item) {
             $dictValue = $item->getDictValue();
-            $item['DISPLAY_VALUE'] = (string) $displayValues[$dictValue];
+            $item['DISPLAY_VALUE'] = !empty($displayValues[$dictValue]) ? (string) $displayValues[$dictValue] : '';
         }
     }
 

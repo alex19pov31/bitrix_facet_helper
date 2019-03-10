@@ -25,7 +25,7 @@ class FacetFilterResult extends Collection
      */
     public function getProperty(string $code): FacetProperty
     {
-        if (!$this->items[$code]) {
+        if (empty($this->items[$code])) {
             return static::getFacetPropertyObject();
         }
 
@@ -82,11 +82,11 @@ class FacetFilterResult extends Collection
         $result = [];
         foreach ($this->filter as $code => $values) {
             $code = str_replace('PROPERTY_', '', $code);
-            $prop = $this->items[$code];
-
-            if (!$prop) {
+            if (empty($this->items[$code])) {
                 continue;
             }
+
+            $prop = $this->items[$code];
             if (strpos($code, '>') !== false) {
                 continue;
             }
