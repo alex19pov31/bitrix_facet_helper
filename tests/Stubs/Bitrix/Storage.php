@@ -4,6 +4,11 @@ namespace Alex19pov31\Tests\BitrixFacetHelper\Stubs\Bitrix;
 
 class Storage
 {
+    public function __construct(int $iblockId)
+    {
+
+    }
+
     /**
      * Return facet id for price
      *

@@ -2,7 +2,7 @@
 
 namespace Alex19pov31\BitrixFacetHelper;
 
-use Alex19pov31\Tests\BitrixFacetHelper\Stubs\FacetProperty;
+use Alex19pov31\BitrixFacetHelper\FacetProperty;
 use Bitrix\Catalog\GroupTable;
 use Bitrix\Iblock\IblockTable;
 use Bitrix\Iblock\PropertyIndex\Storage;
@@ -33,11 +33,12 @@ trait FacetTrait
     /**
      * Get storage object
      *
-     * @return Storage
+     * @param integer $iblockId
+     * @return void
      */
-    protected static function getStorageObject()
+    protected static function getStorageObject(int $iblockId)
     {
-        return new Storage;
+        return new Storage($iblockId);
     }
 
     /**

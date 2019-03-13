@@ -8,12 +8,12 @@ use IteratorAggregate;
 
 abstract class BaseModel implements ArrayAccess, IteratorAggregate
 {
-    public $id;
+    //public $id;
 
     public $fields;
 
     protected $original;
-    
+
     /**
      * Set method for ArrayIterator.
      *
@@ -62,7 +62,7 @@ abstract class BaseModel implements ArrayAccess, IteratorAggregate
     public function offsetGet($offset)
     {
         $fieldValue = isset($this->fields[$offset]) ? $this->fields[$offset] : null;
-        
+
         return $fieldValue;
     }
     /**

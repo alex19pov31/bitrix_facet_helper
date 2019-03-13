@@ -34,6 +34,9 @@ class FacetProperty extends BaseModel
                 'IBLOCK_ID',
                 'SECTION_ID',
                 'SMART_FILTER',
+                'DISPLAY_TYPE',
+                'DISPLAY_EXPANDED',
+                'FILTER_HINT',
                 'CODE' => 'PROPERTY.CODE',
                 'NAME' => 'PROPERTY.NAME',
                 'PROPERTY_TYPE' => 'PROPERTY.PROPERTY_TYPE',
@@ -47,6 +50,21 @@ class FacetProperty extends BaseModel
                 'HINT' => 'PROPERTY.HINT',
             ],
         ]);
+    }
+
+    public function getDisplayType(): string
+    {
+        return (string) $this['DISPLAY_TYPE'];
+    }
+
+    public function isExpandedDisplay(): bool
+    {
+        return $this['DISPLAY_EXPANDED'] == 'Y';
+    }
+
+    public function getFilterHint(): string
+    {
+        return (string) $this['FILTER_HINT'];
     }
 
     /**
@@ -64,14 +82,14 @@ class FacetProperty extends BaseModel
             return new Collection([]);
         }
 
-        $storage = static::getStorageObject();
+        $storage = static::getStorageObject($iblockId);
         while ($prop = $res->fetch()) {
             $prop['FACET_ID'] = $storage::propertyIdToFacetId($prop['ID']);
             $prop['USER_TYPE_SETTINGS'] = unserialize($prop['USER_TYPE_SETTINGS']);
             $propertyList[] = new static($prop);
         }
 
-        $priceList = static::getPrices();
+        $priceList = static::getPrices($iblockId);
         $propertyList = array_merge($propertyList, $priceList);
 
         return new Collection($propertyList);
@@ -398,7 +416,7 @@ class FacetProperty extends BaseModel
 
     public function setFilter(array $values)
     {
-        if ($this->isNumericProperty()) {
+        if ($this->isNumericProperty() || $this->isPriceProperty()) {
             foreach ($this->getValues() as &$value) {
                 if (!empty($values['min'])) {
                     $value['MIN_VALUE_NUM'] = $values['min'];
@@ -523,14 +541,14 @@ class FacetProperty extends BaseModel
      *
      * @return array
      */
-    protected static function getPrices(): array
+    protected static function getPrices(int $iblockId): array
     {
         static::includeModule('catalog');
         $groupTable = static::getGroupTableObject();
         $resPrice = $groupTable::getList();
         $dataPrice = [];
 
-        $storage = static::getStorageObject();
+        $storage = static::getStorageObject($iblockId);
         while ($price = $resPrice->fetch()) {
             $price['FACET_ID'] = $storage::priceIdToFacetId($price['ID']);
             $price['CODE'] = 'PRICE_' . $price['NAME'];

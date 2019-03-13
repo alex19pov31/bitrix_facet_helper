@@ -68,9 +68,9 @@ class FacetFilter
             'SMART_FILTER' => 'Y',
             'PROPERTY.ACTIVE' => 'Y',
         ];
-        if ($this->sectionId > 0) {
-            $filter['SECTION_ID'] = $this->sectionId;
-        }
+        /*if ($this->sectionId > 0) {
+        $filter['SECTION_ID'] = $this->sectionId;
+        }*/
 
         $facetProperty = static::getFacetPropertyObject();
         $this->propertyList = $facetProperty::getList(
@@ -173,7 +173,7 @@ class FacetFilter
         $props = $this->getPoropertyList()->keyBy('FACET_ID');
         foreach ($originValues as $key => &$val) {
             $prop = $props[$val['FACET_ID']];
-            if (empty($prop) || !$prop->isDictionaryProperty() && empty($this->selectedProps[$prop['CODE']])) {
+            if (empty($prop)) {
                 continue;
             }
 
@@ -193,6 +193,7 @@ class FacetFilter
      */
     public function getList($filter = []): FacetFilterResult
     {
+        $dataList = [];
         $curValues = $this->getListValues($filter);
         $originValues = $this->resetFlter()->getListValues([], true);
         $values = (new Collection($this->mergeValues($originValues, $curValues)))->groupBy('FACET_ID');
@@ -227,6 +228,11 @@ class FacetFilter
             }
 
             $operation = $facetProperty::getPropertyOperation($prop);
+            if ($props[$code]->isPriceProperty()) {
+                $simpleFilter[$operation . 'CATALOG_PRICE_' . $props[$code]->getID()] = $value;
+                continue;
+            }
+
             $this->selectedProps[$code] = [
                 'operation' => $operation,
                 'value' => $value,

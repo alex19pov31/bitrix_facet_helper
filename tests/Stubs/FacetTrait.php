@@ -14,9 +14,9 @@ trait FacetTrait
      *
      * @return Bitrix\Storage
      */
-    protected static function getStorageObject()
+    protected static function getStorageObject(int $iblockId)
     {
-        return new Bitrix\Storage;
+        return new Bitrix\Storage($iblockId);
     }
 
     /**
